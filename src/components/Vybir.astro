@@ -1,0 +1,48 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import { amulet, phones } from "../data/client";
+const max = Math.max(...amulet.top.map((t) => t.n));
+---
+<Section id="vybir" class="choice">
+  <div class="container choice__grid">
+    <div class="choice__left">
+      <h2 class="sec-title" data-reveal>Оригінал чи аналог?</h2>
+      <p class="choice__example" data-reveal style="--reveal-delay:60ms">На прикладі Chery Amulet</p>
+      <dl class="choice__figs">
+        <div data-reveal style="--reveal-delay:120ms">
+          <dt class="choice__fig">{amulet.goods}</dt>
+          <dd>товари в каталозі для цієї моделі</dd>
+        </div>
+        <div data-reveal style="--reveal-delay:180ms">
+          <dt class="choice__fig">{amulet.makers}</dt>
+          <dd>виробників: оригінал і аналоги</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="choice__right">
+      <figure class="bars" data-reveal style="--reveal-delay:120ms">
+        <figcaption class="bars__cap">Найбільше товарів для Chery Amulet, станом на {amulet.checked}</figcaption>
+        <ul class="bars__list">
+          {amulet.top.map((t, i) => (
+            <li class="bar" style={`--v:${(t.n / max).toFixed(3)};--i:${i}`}>
+              <span class="bar__name">{t.name}</span>
+              <span class="bar__track" aria-hidden="true"><span class="bar__fill"></span></span>
+              <span class="bar__n">{t.n}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="bars__more">Також {amulet.others.join(", ")} та інші.</p>
+      </figure>
+
+      <div class="choice__text" data-reveal style="--reveal-delay:180ms">
+        <p>Оригінал випускає сам автовиробник, аналоги — незалежні виробники запчастин, тому ціни на одну деталь різні. Назвіть VIN, і менеджер підбере те, що підходить саме вашому авто.</p>
+        <a class="btn btn--primary" href={phones[0].href}>
+          <Icon name="phone" size={20} />
+          <span>Допоможемо обрати</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</Section>

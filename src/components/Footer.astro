@@ -1,0 +1,28 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { futureNote } from "../data/client";
+const cols = [
+  { title: "Покупцям", links: ["Каталог", "Оплата і доставка", "Гарантія та повернення", "Статус замовлення"] },
+  { title: "Корисне", links: ["Статті та огляди", "Допомога (FAQ)", "СТО Asia Service"] },
+  { title: "Співпраця", links: ["Продавцям маркетплейсу", "Договір оферти", "Політика конфіденційності"] },
+];
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <a class="logo logo--footer" href="#top" aria-label="AsiaParts, на початок сторінки">
+      <img src="/logo-asiaparts.svg" alt="AsiaParts" width="150" height="32" />
+    </a>
+    {cols.map((c) => (
+      <div class="site-footer__col">
+        <h2 class="site-footer__h">{c.title}</h2>
+        <ul>
+          {c.links.map((l) => <li><FutureLink note={futureNote}>{l}</FutureLink></li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+  <div class="container site-footer__legal">
+    <p>© 2014–2026 ASIAPARTS™</p>
+    <p><a href="#top">На початок сторінки</a></p>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import { modelGroups, futureNote } from "../data/client";
+const [chery, geely, ...rest] = modelGroups;
+---
+<Section id="modeli" rec="R-UX-05" class="models">
+  <div class="container">
+    <div class="models__head" data-reveal>
+      <h2 class="sec-title">Швидкий вхід за моделлю</h2>
+      <p class="models__lead">Популярні моделі каталогу. Сторінки моделей відкриються в повній версії сайту.</p>
+    </div>
+    <div class="models__rows">
+      {[chery, geely].map((g, gi) => (
+        <div class="mrow" data-reveal style={`--reveal-delay:${gi * 60}ms`}>
+          <h3 class="mrow__make">{g.make}</h3>
+          <ul class="mrow__list">
+            {g.models.map((m) => <li><FutureLink note={futureNote} class="chip">{m}</FutureLink></li>)}
+          </ul>
+        </div>
+      ))}
+      <div class="mrow mrow--pair" data-reveal style="--reveal-delay:120ms">
+        {rest.map((g) => (
+          <div class="mrow__half">
+            <h3 class="mrow__make">{g.make}</h3>
+            <ul class="mrow__list">
+              {g.models.map((m) => <li><FutureLink note={futureNote} class="chip">{m}</FutureLink></li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Section>

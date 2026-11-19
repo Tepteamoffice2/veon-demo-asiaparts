@@ -1,0 +1,94 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { phones, brands, hoursShort, vinMail, emails, futureNote, formNote } from "../data/client";
+---
+<Section id="pidbir" rec="R-UX-01" class="hero" label="Підбір деталі">
+  <div class="container hero__grid">
+    <div class="hero__head">
+      <h1 class="hero__title">Запчастини для китайських авто — від Amulet до ZEEKR</h1>
+      <p class="hero__lead">Оригінал і аналоги. Підберемо деталь за маркою, моделлю або VIN.</p>
+    </div>
+
+    <aside class="hero__call" aria-label="Підбір телефоном" data-rec="R-UX-03">
+      <a class="hero__num" href={phones[0].href}>{phones[0].label}</a>
+      <a class="hero__num2" href={phones[1].href}>{phones[1].label}</a>
+      <p class="hero__hours">{hoursShort}</p>
+      <a class="btn btn--primary" href={phones[0].href} data-call>
+        <span>Подзвонити — підберемо за VIN</span>
+      </a>
+    </aside>
+
+    <div class="tool" data-tool>
+      <div class="tool__tabs" role="tablist" aria-label="Спосіб підбору">
+        <button class="tool__tab" type="button" role="tab" id="tab-auto" aria-controls="panel-auto" aria-selected="true" data-tab>За авто</button>
+        <button class="tool__tab" type="button" role="tab" id="tab-vin" aria-controls="panel-vin" aria-selected="false" tabindex="-1" data-tab>VIN</button>
+        <button class="tool__tab" type="button" role="tab" id="tab-art" aria-controls="panel-art" aria-selected="false" tabindex="-1" data-tab>Артикул</button>
+      </div>
+
+      <div class="tool__panel tool__panel--auto is-active" role="tabpanel" id="panel-auto" aria-labelledby="tab-auto" data-panel>
+        <div class="pick">
+          <p class="step" id="step-brand" data-rec="R-UX-02"><span class="step__n">Крок 1 з 3:</span> марка</p>
+          <div class="pick__scroll" data-rec="R-UX-02">
+            <div class="pick__track" data-track>
+              <span class="pick__marker" aria-hidden="true" data-marker></span>
+              <ul class="pick__brands" aria-labelledby="step-brand">
+                {brands.map((b) => (
+                  <li><button class="brand" type="button" aria-pressed="false" data-brand={b}>{b}</button></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="next">
+          <div class="next__steps">
+            <div class="next__step">
+              <p class="step"><span class="step__n">Крок 2:</span> модель</p>
+              <button class="field-btn" type="button" disabled data-step-label>Оберіть марку</button>
+            </div>
+            <div class="next__step">
+              <p class="step"><span class="step__n">Крок 3:</span> рік</p>
+              <button class="field-btn" type="button" disabled data-step-label>Оберіть марку</button>
+            </div>
+          </div>
+          <div class="next__hint" data-hint aria-live="polite">
+            <p><strong data-hint-brand></strong> Підбір запрацює в повній версії сайту — а поки підберемо телефоном.</p>
+            <a class="link" href={phones[0].href}>{phones[0].label}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool__panel tool__panel--form" role="tabpanel" id="panel-vin" aria-labelledby="tab-vin" data-panel>
+        <div class="qform">
+          <label class="qform__label" for="vin">VIN-код авто</label>
+          <div class="qform__row">
+            <input id="vin" name="vin" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="17" placeholder="17 символів, наприклад з техпаспорта" />
+            <FutureLink note={formNote} class="btn btn--ghost qform__go">Знайти</FutureLink>
+          </div>
+          <p class="qform__help">Надішліть VIN на <a class="link" href={vinMail}>{emails.retail.label}</a> або подзвоніть <a class="link" href={phones[0].href}>{phones[0].label}</a>: менеджер перевірить сумісність.</p>
+        </div>
+      </div>
+
+      <div class="tool__panel tool__panel--form" role="tabpanel" id="panel-art" aria-labelledby="tab-art" data-panel>
+        <div class="qform">
+          <label class="qform__label" for="art">Артикул або назва деталі</label>
+          <div class="qform__row">
+            <input id="art" name="article" type="text" autocomplete="off" spellcheck="false" placeholder="Номер з упаковки або каталогу" />
+            <FutureLink note={futureNote} class="btn btn--ghost qform__go">Знайти</FutureLink>
+          </div>
+          <p class="qform__help">Пошук за артикулом запрацює в повній версії сайту. Зараз назвіть артикул менеджеру: <a class="link" href={phones[0].href}>{phones[0].label}</a>.</p>
+        </div>
+      </div>
+
+      <div class="tool__call" data-rec="R-UX-03">
+        <a class="btn btn--primary btn--wide" href={phones[0].href} data-call-mobile>
+          <Icon name="phone" size={20} />
+          <span>Подзвонити — <span class="lbl-long">підберемо</span><span class="lbl-short">підбір</span> за VIN</span>
+        </a>
+        <p class="tool__hours">{hoursShort}, нд вихідний</p>
+      </div>
+    </div>
+  </div>
+</Section>

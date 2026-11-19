@@ -1,0 +1,37 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import { pickup } from "../data/client";
+// Facts: company.contacts.addresses, C-016..C-019, business_lines[3]
+---
+<Section id="punkty" rec="R-UX-13" class="points">
+  <div class="container">
+    <div class="points__head" data-reveal>
+      <h2 class="sec-title">Де забрати замовлення</h2>
+      <p class="points__lead">Партнерські точки видачі. Самовивіз безкоштовний.</p>
+    </div>
+    <div class="points__cities">
+      {pickup.map((c, ci) => (
+        <div class="city" data-reveal style={`--reveal-delay:${ci * 60}ms`}>
+          <h3 class="city__name">{c.city}</h3>
+          <ul class="city__list">
+            {c.points.map((p) => (
+              <li class="point">
+                <p class="point__street">{p.street}</p>
+                {"note" in p && p.note && <p class="point__note">{p.note}</p>}
+                <ul class="point__hours" aria-label="Графік роботи">
+                  {p.hours.map((h) => <li>{h}</li>)}
+                </ul>
+                <a class="point__route" href={p.map} target="_blank" rel="noopener">
+                  <Icon name="route" size={20} />
+                  <span>Прокласти маршрут</span>
+                  <span class="visually-hidden">: {c.city}, {p.street} (Google Maps, нова вкладка)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,29 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { categories, phones, futureNote } from "../data/client";
+---
+<Section id="kategorii" rec="R-UX-05" class="cats">
+  <div class="container">
+    <h2 class="sec-title" data-reveal>Деталі за вузлами авто</h2>
+    <ul class="cats__grid">
+      {categories.map((c, i) => (
+        <li data-reveal style={`--reveal-delay:${Math.min(i, 8) * 40}ms`}>
+          <FutureLink note={futureNote} class="tile">
+            <span class="tile__name">{c}</span>
+          </FutureLink>
+        </li>
+      ))}
+      <li class="cats__ask" data-reveal style="--reveal-delay:320ms">
+        <div class="tile tile--dark">
+          <p class="tile__name">Не знаєте назву деталі? Подзвоніть</p>
+          <a class="tile__call" href={phones[0].href}>
+            <Icon name="phone" size={20} />
+            <span>{phones[0].label}</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</Section>

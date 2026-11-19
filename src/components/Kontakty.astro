@@ -1,0 +1,30 @@
+---
+import Section from "./Section.astro";
+import { phones, emails, hoursLong } from "../data/client";
+---
+<Section id="kontakty" rec="R-UX-07" class="contacts">
+  <div class="container">
+    <div class="contacts__card">
+      <h2 class="sec-title" data-reveal>Подзвоніть — підберемо деталь</h2>
+      <div class="contacts__grid">
+        <ul class="contacts__phones" data-reveal style="--reveal-delay:60ms">
+          {phones.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+        </ul>
+        <div class="contacts__side" data-reveal style="--reveal-delay:120ms">
+          <div class="contacts__block">
+            <h3 class="contacts__h">Колл-центр</h3>
+            <ul class="contacts__hours">{hoursLong.map((h) => <li>{h}</li>)}</ul>
+          </div>
+          <div class="contacts__block">
+            <h3 class="contacts__h">E-mail</h3>
+            <ul class="contacts__mails">
+              {[emails.retail, emails.wholesale].map((e) => (
+                <li><a class="link" href={e.href}>{e.label}</a> <span class="contacts__note">{e.note}</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

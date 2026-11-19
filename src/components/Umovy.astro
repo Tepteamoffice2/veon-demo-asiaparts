@@ -1,0 +1,53 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import { phones, emails } from "../data/client";
+// Facts: W-F005, W-F006, products_services[4], [5], [6]
+---
+<Section id="umovy" rec="R-UX-04" class="terms">
+  <div class="container">
+    <h2 class="terms__title">Коли отримаю і як заплачу</h2>
+
+    <div class="terms__send">
+      <div class="deadline" data-day="weekday">
+        <p class="deadline__time"><span class="deadline__mark">17:00</span></p>
+        <p class="deadline__text">Замовили в будні до 17:00 — зазвичай відправляємо того ж дня</p>
+        <p class="deadline__today" data-today-label></p>
+      </div>
+      <div class="deadline" data-day="saturday">
+        <p class="deadline__time"><span class="deadline__mark">12:00</span></p>
+        <p class="deadline__text">У суботу — до 12:00</p>
+        <p class="deadline__today" data-today-label></p>
+      </div>
+    </div>
+    <p class="terms__sunday" data-sunday>У неділю колл-центр не працює, тоді пишіть на <a href={emails.retail.href}>{emails.retail.label}</a>.</p>
+
+    <dl class="terms__facts">
+      <div class="fact">
+        <dt class="fact__fig">12 міс.</dt>
+        <dd>гарантія — до 12 місяців</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact__fig">14 днів</dt>
+        <dd>на обмін і повернення</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact__fig">10%</dt>
+        <dd>від суми покупки — бонусами, ними можна сплатити до 25% вартості</dd>
+      </div>
+    </dl>
+
+    <div class="terms__rows">
+      <dl class="terms__list">
+        <div><dt>Доставка</dt><dd>Нова Пошта: відділення, поштомат, кур'єр — за тарифами перевізника</dd></div>
+        <div><dt>Самовивіз</dt><dd>безкоштовно з точок у Дніпрі та Києві</dd></div>
+        <div><dt>Оплата</dt><dd>накладений платіж, картка або готівка при самовивозі, безготівковий для юросіб</dd></div>
+        <div><dt>Немає в наявності</dt><dd>оформимо передзамовлення</dd></div>
+      </dl>
+      <a class="btn btn--inverse" href={phones[0].href}>
+        <Icon name="phone" size={20} />
+        <span>Подзвонити</span>
+      </a>
+    </div>
+  </div>
+</Section>

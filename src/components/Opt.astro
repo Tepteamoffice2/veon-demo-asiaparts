@@ -1,0 +1,33 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { emails, phones, futureNote } from "../data/client";
+// Facts: W-F007, company.business_lines[2]
+---
+<Section id="opt" rec="R-UX-10" class="b2b">
+  <div class="container b2b__grid">
+    <div class="b2b__head" data-reveal>
+      <h2 class="sec-title">Для СТО, магазинів і опту</h2>
+      <p class="b2b__lead">Окремий відділ оптових продажів.</p>
+    </div>
+
+    <ul class="b2b__facts">
+      <li data-reveal style="--reveal-delay:60ms">Персональний менеджер</li>
+      <li data-reveal style="--reveal-delay:120ms">B2B-система замовлень</li>
+      <li data-reveal style="--reveal-delay:180ms">Щоденні забори перевізниками</li>
+    </ul>
+
+    <div class="b2b__contact" data-reveal style="--reveal-delay:120ms" data-rec="R-UX-07">
+      <a class="b2b__mail" href={emails.wholesale.href}>{emails.wholesale.label}</a>
+      <div class="b2b__actions">
+        <a class="btn btn--inverse" href={emails.wholesale.href}>
+          <Icon name="mail" size={20} />
+          <span>Написати у відділ опту</span>
+        </a>
+        <FutureLink note={futureNote} class="btn btn--ghost-dark">B2B-кабінет</FutureLink>
+      </div>
+      <p class="b2b__phone">Або телефоном: <a href={phones[0].href}>{phones[0].label}</a></p>
+    </div>
+  </div>
+</Section>

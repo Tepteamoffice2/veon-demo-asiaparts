@@ -1,0 +1,44 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Pidbir from "../components/Pidbir.astro";
+import Umovy from "../components/Umovy.astro";
+import Kategorii from "../components/Kategorii.astro";
+import Modeli from "../components/Modeli.astro";
+import Vybir from "../components/Vybir.astro";
+import Opt from "../components/Opt.astro";
+import Punkty from "../components/Punkty.astro";
+import Kontakty from "../components/Kontakty.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+import "../styles/site.css";
+
+const title = "Запчастини для китайських авто — AsiaParts, Дніпро та Київ";
+const description = "Оригінал і аналоги для Chery, Geely, BYD, Great Wall, ZEEKR та інших марок. Підбір за VIN, відправка Новою Поштою в день замовлення, самовивіз у Дніпрі та Києві";
+const org = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "AsiaParts",
+  telephone: ["+380952755550", "+380977755550"],
+  email: ["KOA@asiaparts.com.ua", "pdk@asiaparts.com.ua"],
+};
+---
+<Base lang="uk" title={title} description={description}>
+  <Fragment slot="head">
+    <link rel="preload" href="/fonts/fira-sans-extra-condensed-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content="#F3EEED" />
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  </Fragment>
+  <Header slot="header" />
+  <Pidbir />
+  <Umovy />
+  <Kategorii />
+  <Modeli />
+  <Vybir />
+  <Opt />
+  <Punkty />
+  <Kontakty />
+  <Footer slot="footer" />
+  <MobileBar slot="footer" />
+</Base>
+<script src="../scripts/site.ts"></script>

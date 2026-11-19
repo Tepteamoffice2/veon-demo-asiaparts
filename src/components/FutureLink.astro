@@ -1,0 +1,13 @@
+---
+// A future page that is not built in the demo yet (menu item, button, card, footer link).
+// Renders an inactive element with a short note instead of a link: never point it to the client's current site.
+// `note` is written in the project language: «Розділ у розробці».
+// `align` keeps the note inside the viewport for items near the screen edge.
+interface Props { note: string; class?: string; align?: "start" | "center" | "end"; rec?: string; }
+const { note, class: cls, align = "start", rec } = Astro.props;
+---
+<span class:list={["future-link", `future-link--${align}`, cls]} role="link" aria-disabled="true" tabindex="0" data-rec={rec}>
+  <slot />
+  <span class="future-link__note" aria-hidden="true">{note}</span>
+  <span class="visually-hidden">({note})</span>
+</span>

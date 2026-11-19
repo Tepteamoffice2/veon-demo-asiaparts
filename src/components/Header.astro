@@ -1,0 +1,87 @@
+---
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { phones, emails, hoursShort, futureNote } from "../data/client";
+
+const anchors = [
+  { href: "#pidbir", label: "Підбір" },
+  { href: "#umovy", label: "Умови" },
+  { href: "#kategorii", label: "Категорії" },
+  { href: "#opt", label: "Опт і СТО" },
+  { href: "#punkty", label: "Точки видачі" },
+  { href: "#kontakty", label: "Контакти" },
+];
+---
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="logo" href="#top" aria-label="AsiaParts, на початок сторінки">
+      <img src="/logo-asiaparts.svg" alt="AsiaParts" width="188" height="40" />
+    </a>
+
+    <FutureLink note={futureNote} class="hdr-catalog">
+      <Icon name="grid" size={20} />
+      <span>Каталог</span>
+    </FutureLink>
+
+    <div class="hdr-search" role="search">
+      <label class="visually-hidden" for="hdr-q">Пошук деталі за назвою або артикулом</label>
+      <input id="hdr-q" name="q" type="search" placeholder="Назва або артикул" autocomplete="off" enterkeyhint="search" />
+      <FutureLink note={futureNote} class="hdr-search__go">
+        <Icon name="search" size={20} />
+        <span>Знайти</span>
+      </FutureLink>
+    </div>
+
+    <div class="hdr-phones" data-rec="R-UX-03">
+      <div class="hdr-phones__nums">
+        {phones.map((p) => <a href={p.href}>{p.label}</a>)}
+      </div>
+      <p class="hdr-phones__hours">{hoursShort}</p>
+    </div>
+
+    <FutureLink note={futureNote} class="hdr-cart" align="end">
+      <Icon name="cart" />
+      <span class="visually-hidden">Кошик</span>
+    </FutureLink>
+
+    <a class="hdr-call" href={phones[0].href} data-rec="R-UX-03">
+      <Icon name="phone" />
+      <span class="visually-hidden">Подзвонити {phones[0].label}</span>
+    </a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" data-burger>
+      <span class="burger__open"><Icon name="menu" /></span>
+      <span class="burger__close"><Icon name="close" /></span>
+      <span class="visually-hidden">Меню</span>
+    </button>
+  </div>
+
+  <div class="site-header__nav">
+    <nav class="container anchors" aria-label="Розділи сторінки">
+      <ul>
+        {anchors.map((a) => <li><a href={a.href} data-spy={a.href.slice(1)}>{a.label}</a></li>)}
+      </ul>
+      <p class="lang">
+        <span class="lang__on" aria-current="true">UA</span>
+        <FutureLink note={futureNote} class="lang__off" align="end">RU</FutureLink>
+      </p>
+    </nav>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav" aria-label="Меню" data-mnav>
+  <div class="container mnav__inner">
+    <ul class="mnav__links">
+      {anchors.map((a) => <li><a href={a.href}>{a.label}</a></li>)}
+    </ul>
+    <div class="mnav__contacts">
+      {phones.map((p) => <a class="mnav__phone" href={p.href} data-rec="R-UX-03">{p.label}</a>)}
+      <p class="mnav__hours">{hoursShort}, нд вихідний</p>
+      <a class="mnav__mail" href={emails.retail.href} data-rec="R-UX-07">{emails.retail.label}</a>
+      <a class="mnav__mail" href={emails.wholesale.href} data-rec="R-UX-07">{emails.wholesale.label}<span class="mnav__mail-note"> (опт)</span></a>
+      <p class="mnav__lang">
+        <span aria-current="true">UA</span>
+        <FutureLink note={futureNote}>RU</FutureLink>
+      </p>
+    </div>
+  </div>
+</nav>
