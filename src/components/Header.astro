@@ -15,7 +15,7 @@ const anchors = [
 <header class="site-header" data-header>
   <div class="container site-header__bar">
     <a class="logo" href="#top" aria-label="AsiaParts, на початок сторінки">
-      <img src="/logo-asiaparts.svg" alt="AsiaParts" width="188" height="40" />
+      <img src={(import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + "/") + "logo-asiaparts.svg"} alt="AsiaParts" width="188" height="40" />
     </a>
 
     <FutureLink note={futureNote} class="hdr-catalog">

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import firaCyr from "../fonts/fira-sans-extra-condensed-cyrillic-800-normal.woff2?url";
 import Header from "../components/Header.astro";
 import Pidbir from "../components/Pidbir.astro";
 import Umovy from "../components/Umovy.astro";
@@ -25,7 +26,7 @@ const org = {
 ---
 <Base lang="uk" title={title} description={description}>
   <Fragment slot="head">
-    <link rel="preload" href="/fonts/fira-sans-extra-condensed-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={firaCyr} as="font" type="font/woff2" crossorigin />
     <meta name="theme-color" content="#F3EEED" />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
   </Fragment>
